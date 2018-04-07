@@ -8,6 +8,8 @@
  */
 "use strict";
 
+let isEqual = require('lodash.isequal');
+
 let findDuplicates = function() {
 
 };
