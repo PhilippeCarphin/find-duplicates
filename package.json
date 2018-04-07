@@ -1,0 +1,33 @@
+{
+    "name": "@pelevesque/find-duplicates",
+    "version": "0.0.1",
+    "description": "finds indexes of duplicates in an array.",
+    "main": "index.js",
+    "engines": {
+        "node": ">=4.2.4"
+    },
+    "scripts": {
+        "test": "node_modules/.bin/mocha --reporter spec",
+        "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pelevesque/find-duplicates.git"
+    },
+    "keywords": [],
+    "author": "Pierre-Emmanuel Lévesque <pierre.e.levesque@gmail.com> (http://www.pelevesque.com)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/pelevesque/find-duplicates/issues"
+    },
+    "homepage": "https://github.com/pelevesque/find-duplicates#readme",
+    "directories": {
+        "test": "test"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "coveralls": "^3.0.0",
+        "istanbul": "^0.4.5",
+        "mocha": "^5.0.5"
+    }
+}
