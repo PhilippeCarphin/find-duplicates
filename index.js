@@ -34,9 +34,9 @@ function findDuplicates(arr, duplicates, mark) {
             mark = arr[startIndex];
         }
 
-        let newArr = arr.map(function(i, v) {
-             return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
-        });
+        let newArr = arr.map(
+            (i,v) => (v == 0 || indexes.indexOf(v) != -1 ? mark : i)
+        )
 
         duplicates.push(indexes);
         findDuplicates(newArr, duplicates, mark);
