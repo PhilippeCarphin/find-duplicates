@@ -10,8 +10,36 @@
 
 let isEqual = require('lodash.isequal');
 
-let findDuplicates = function() {
+function findDuplicates(arr, duplicates, mark) {
+    duplicates = duplicates == null ? [] : duplicates;
+    let indexes = [];
 
-};
+    let startIndex = typeof mark === "undefined"
+        ? 0
+        : arr.findIndex(function(v) { return v != mark; });
+
+    if (startIndex != -1) {
+        if (typeof mark === "undefined") {
+            mark = arr[startIndex];
+        }
+
+        for (let i = startIndex; i < arr.length; i++) {
+            if (isEqual(arr[i], arr[startIndex])) {
+                indexes.push(i);
+            }
+        }
+
+        let newArr = arr.map(function(i, v) {
+             return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
+        });
+
+        if (indexes.length > 1) {
+            duplicates.push(indexes);
+            findDuplicates(newArr, duplicates, mark);
+        }
+    }
+
+    return duplicates;
+}
 
 module.exports = findDuplicates;
