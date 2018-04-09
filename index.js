@@ -12,7 +12,7 @@ let isEqual = require('lodash.isequal');
 
 function findDuplicates(arr, duplicates, mark) {
     duplicates = duplicates == null ? [] : duplicates;
-    let indexes = [];
+    let indices = [];
 
     let startIndex = typeof mark === "undefined"
         ? 0
@@ -24,21 +24,21 @@ function findDuplicates(arr, duplicates, mark) {
 
     for (let i = startIndex; i < arr.length; i++) {
         if (isEqual(arr[i], arr[startIndex])) {
-            indexes.push(i);
+            indices.push(i);
         }
     }
 
-    if (indexes.length > 1) {
+    if (indices.length > 1) {
 
         if (typeof mark === "undefined") {
             mark = arr[startIndex];
         }
 
         let newArr = arr.map(
-            (i,v) => (v == 0 || indexes.indexOf(v) != -1 ? mark : i)
+            (i,v) => (v == 0 || indices.indexOf(v) != -1 ? mark : i)
         )
 
-        duplicates.push(indexes);
+        duplicates.push(indices);
         findDuplicates(newArr, duplicates, mark);
     }
 
