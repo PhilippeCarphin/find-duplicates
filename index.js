@@ -19,9 +19,6 @@ function findDuplicates(arr, duplicates, mark) {
         : arr.findIndex(function(v) { return v != mark; });
 
     if (startIndex != -1) {
-        if (typeof mark === "undefined") {
-            mark = arr[startIndex];
-        }
 
         for (let i = startIndex; i < arr.length; i++) {
             if (isEqual(arr[i], arr[startIndex])) {
@@ -29,11 +26,16 @@ function findDuplicates(arr, duplicates, mark) {
             }
         }
 
-        let newArr = arr.map(function(i, v) {
-             return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
-        });
-
         if (indexes.length > 1) {
+
+            if (typeof mark === "undefined") {
+                mark = arr[startIndex];
+            }
+
+            let newArr = arr.map(function(i, v) {
+                 return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
+            });
+
             duplicates.push(indexes);
             findDuplicates(newArr, duplicates, mark);
         }
