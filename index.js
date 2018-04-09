@@ -16,7 +16,7 @@ function findDuplicates(arr, duplicates, mark) {
 
     let startIndex = typeof mark === "undefined"
         ? 0
-        : arr.findIndex(function(v) { return v != mark; });
+        : arr.findIndex(v => v != mark);
 
     if (startIndex == -1) {
         return duplicates;
