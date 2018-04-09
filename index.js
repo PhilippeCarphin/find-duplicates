@@ -18,27 +18,28 @@ function findDuplicates(arr, duplicates, mark) {
         ? 0
         : arr.findIndex(function(v) { return v != mark; });
 
-    if (startIndex != -1) {
+    if (startIndex == -1) {
+        return duplicates;
+    }
 
-        for (let i = startIndex; i < arr.length; i++) {
-            if (isEqual(arr[i], arr[startIndex])) {
-                indexes.push(i);
-            }
+    for (let i = startIndex; i < arr.length; i++) {
+        if (isEqual(arr[i], arr[startIndex])) {
+            indexes.push(i);
+        }
+    }
+
+    if (indexes.length > 1) {
+
+        if (typeof mark === "undefined") {
+            mark = arr[startIndex];
         }
 
-        if (indexes.length > 1) {
+        let newArr = arr.map(function(i, v) {
+             return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
+        });
 
-            if (typeof mark === "undefined") {
-                mark = arr[startIndex];
-            }
-
-            let newArr = arr.map(function(i, v) {
-                 return v == 0 || indexes.indexOf(v) != -1 ? mark : i;
-            });
-
-            duplicates.push(indexes);
-            findDuplicates(newArr, duplicates, mark);
-        }
+        duplicates.push(indexes);
+        findDuplicates(newArr, duplicates, mark);
     }
 
     return duplicates;
